@@ -21,4 +21,18 @@
         <URL value="@style.css"/>
     </stylesheets>
     
+    <ImageView fitWidth="600" fitHeight="220" preserveRatio="false">
+        <Image url="@/view/NBA_Back.jpg"/>
+    </ImageView>
+    <VBox alignment="CENTER">
+        <Region prefHeight="20" />
+        <HBox alignment="CENTER" spacing="220">
+            <Button text="Teams Menu" styleClass="menu-button"/>
+            <Button text="View Players" styleClass="menu-button"/>
+        </HBox>
+        <Region prefHeight="30" />
+        <Button text="Close" styleClass="menu-button"/>
+        <Region prefHeight="10" />
+    </VBox>
+
 </VBox>

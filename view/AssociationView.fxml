@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox styleClass="background" prefHeight="420.0" prefWidth="600.0" spacing="20" xmlns:fx="http://javafx.com/fxml/1">
+<VBox styleClass="background" prefHeight="420.0" prefWidth="600.0" spacing="0" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@style.css"/>
     </stylesheets>
@@ -20,12 +20,13 @@
         <Image url="@/view/NBA_Back.jpg"/>
     </ImageView>
     <VBox alignment="CENTER" spacing="0">
+         <Region prefHeight="20" />
         <HBox alignment="CENTER" spacing="220">
             <Button text="Explore the teams" styleClass="menu-button"/>
             <Button text="Arrange a new season" styleClass="menu-button"/>
         </HBox>
-        <Region prefHeight="25" />
+        <Region prefHeight="30" />
         <Button text="Exit" styleClass="menu-button"/>
-        <Region prefHeight="15" />
+        <Region prefHeight="10" />
     </VBox>
 </VBox>

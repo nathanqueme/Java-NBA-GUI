@@ -13,10 +13,20 @@ public class NBAfxApp extends Application {
         primaryStage.getIcons().add(new Image("view/nba.png"));
         primaryStage.setX(ViewLoader.X);
         primaryStage.setY(ViewLoader.Y);
+
+        String title = "NBAfx View";
+        String fxml = "/view/AssociationView.fxml";
+
+        title = "Explore Teams";
+        fxml = "/view/TeamsTable.fxml";
+
+        // title = "Arrange a new season";
+        // fxml = "/view/SeasonRoundView.fxml";
+
         ViewLoader.showStage(
             new Association(), 
-            "/view/AssociationView.fxml", 
-            "NBAfx View", 
+            fxml, 
+            title, 
             primaryStage
         );
     }
