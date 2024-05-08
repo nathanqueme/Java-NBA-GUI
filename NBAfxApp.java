@@ -20,8 +20,8 @@ public class NBAfxApp extends Application {
         title = "Explore Teams";
         fxml = "/view/TeamsTable.fxml";
 
-        // title = "Arrange a new season";
-        // fxml = "/view/SeasonRoundView.fxml";
+        title = "Arrange a new season";
+        fxml = "/view/SeasonRoundView.fxml";
 
         ViewLoader.showStage(
             new Association(), 
