@@ -10,28 +10,22 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Text?>
 
-<VBox styleClass="background" prefHeight="420.0" prefWidth="600.0" spacing="20" xmlns:fx="http://javafx.com/fxml/1"
-      >
-
-    
+<VBox styleClass="background" prefHeight="420.0" prefWidth="600.0" spacing="20" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@style.css"/>
     </stylesheets>
 
-   
-        <ImageView fitWidth="600" fitHeight="220" preserveRatio="false">
-            <Image url="@/view/NBA_Back.jpg"/>
-        </ImageView>
-        <VBox alignment="CENTER" spacing="0">
-            <HBox alignment="CENTER" spacing="220">
-                <Button text="Explore the teams" styleClass="menu-button"/>
-                <Button text="Arrange a new season" styleClass="menu-button"/>
-            </HBox>
-            <Region prefHeight="25" />
-            <Button text="Exit" styleClass="menu-button"/>
-            <Region prefHeight="15" />
-        </VBox>
-  
+    <ImageView fitWidth="600" fitHeight="220" preserveRatio="false">
+        <Image url="@/view/NBA_Back.jpg"/>
+    </ImageView>
+    <VBox alignment="CENTER" spacing="0">
+        <HBox alignment="CENTER" spacing="220">
+            <Button text="Explore the teams" styleClass="menu-button"/>
+            <Button text="Arrange a new season" styleClass="menu-button"/>
+        </HBox>
+        <Region prefHeight="25" />
+        <Button text="Exit" styleClass="menu-button"/>
+        <Region prefHeight="15" />
+    </VBox>
 </VBox>
