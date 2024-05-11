@@ -24,6 +24,6 @@
     </stylesheets>
 
     <Label text="Message:" styleClass="label-h2"/>
-    <Text text="Bulls Team already exists" styleClass="text-out"/>
+    <Text text="Bulls Team already exists" fx:id="errorMessage" styleClass="text-out"/>
     <Button text="Okay" styleClass="button" onAction="#close"/>
 </VBox>
