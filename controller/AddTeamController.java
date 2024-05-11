@@ -33,12 +33,12 @@ public class AddTeamController extends Controller<Teams> {
     // -------------------------------------------------------
 
 	@FXML private void addTeam() {
-		try {
-            Stage stage = newStage("error.png");
-            ViewLoader.showStage(getTeams(), "/view/error.fxml", "Error!", stage);
-        } catch (IOException ex) {
-            Logger.getLogger(SeasonController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+		//try {
+        //    Stage stage = newStage("error.png");
+        //    ViewLoader.showStage(getTeams(), "/view/error.fxml", "Error!", stage);
+        //} catch (IOException ex) {
+        //    Logger.getLogger(SeasonController.class.getName()).log(Level.SEVERE, null, ex);
+        //}
 
         Team team = new Team(getName());
 		getTeams().addTeam(team);
