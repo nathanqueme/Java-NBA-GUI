@@ -45,15 +45,37 @@ public class TeamsController extends Controller<Teams> {
         avgCreditColumn.prefWidthProperty().bind(groupsTv.widthProperty().multiply(w));
         avgAgeColumn.prefWidthProperty().bind(groupsTv.widthProperty().multiply(w));
         // Disable btns if no team selected
+        addTeamButton.setDisable(false);
         manageButton.setDisable(true);
         deleButton.setDisable(true);
+
+        // Init
+        groupsTv.setItems(model.teams);
+
+        final Team[] lastClicked = {null};
+        // 2nd click DESELECTION
+        groupsTv.setRowFactory(tv -> {
+            TableRow<Team> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (!row.isEmpty()) {
+                    if (event.getClickCount() == 1 && row.getItem().equals(lastClicked[0])) {
+                        groupsTv.getSelectionModel().clearSelection();
+                        lastClicked[0] = null; // Reset last clicked after clearing selection
+                    } else {
+                        lastClicked[0] = row.getItem();
+                    }
+                }
+            });
+            return row;
+        });
+      
+        // DISBLE BTNS BASED ON SELECTION
         groupsTv.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             boolean isTeamSelected = newSelection != null;
             manageButton.setDisable(!isTeamSelected);
             deleButton.setDisable(!isTeamSelected);
+            addTeamButton.setDisable(isTeamSelected);
         });
-        // Init
-        groupsTv.setItems(model.teams);
     }
 
     // UTILITY METHOD   --------------------------------------

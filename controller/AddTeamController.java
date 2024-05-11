@@ -33,11 +33,19 @@ public class AddTeamController extends Controller<Teams> {
     // -------------------------------------------------------
 
 	@FXML private void addTeam() {
-
+        String errorMsg = "";
+        Validator v = new Validator();
+        v.clear();
+        v.generateErrors(getName());
+        if (v.errors().size() > 0) {
+            errorMsg = v.errors().toArray(new String[0])[v.errors().size() - 1];
+        }
         if (getTeams().hasTeam(getName())) {
+            errorMsg = getName() + " Team already exists";
+        }
+        if (!errorMsg.isEmpty()) {
             try {
                 Stage stage = newStage("error.png");
-                String errorMsg = getName() + " Team already exists";
                 ViewLoader.showStage(errorMsg, "/view/error.fxml", "Error!", stage);
             } catch (IOException ex) {
                 Logger.getLogger(SeasonController.class.getName()).log(Level.SEVERE, null, ex);
