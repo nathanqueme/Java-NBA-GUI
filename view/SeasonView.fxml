@@ -19,6 +19,7 @@
     alignment="CENTER" 
     prefHeight="400" prefWidth="340" spacing="20" 
     xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="controller.SeasonController"
 >
     
     <stylesheets>
@@ -30,13 +31,12 @@
     </ImageView>
     <VBox alignment="CENTER" spacing='10'>
         <VBox alignment="CENTER" spacing='30'>
-            <Button text="Round" styleClass="menu-button"/>
-            <Button text="Current" styleClass="menu-button"/>
-            <Button text="Game" styleClass="menu-button"/>
-            <Button text="Result" styleClass="menu-button"/>
-            <Button text="Close" styleClass="menu-button"/>
+            <Button text="Round" styleClass="menu-button" onAction="#seeRound"/>
+            <Button text="Current" styleClass="menu-button" onAction="#seeCurrent"/>
+            <Button text="Game" styleClass="menu-button" onAction="#seeGame"/>
+            <Button text="Result" styleClass="menu-button" onAction="#seeResults"/>
+            <Button text="Close" styleClass="menu-button" onAction="#close"/>
         </VBox>
-        <Region prefHeight="00" />
-    </VBox>
-
+     </VBox>
+    <Region prefHeight="00" />
 </VBox>
