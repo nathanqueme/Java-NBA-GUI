@@ -38,7 +38,7 @@ public class SeasonController extends Controller<Season> {
     public void seeRound() {
         try {
             Stage stage = newStage();
-            ViewLoader.showStage(getSeason().getCurrentSchedule(), "/view/SeasonRoundView.fxml", "View Round", stage);
+            ViewLoader.showStage(getSeason().getCurrentSchedule(), "/view/SeasonRoundView.fxml", "Season Rounds", stage);
         } catch (IOException ex) {
             Logger.getLogger(SeasonController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -48,27 +48,22 @@ public class SeasonController extends Controller<Season> {
     public void seeCurrent() {
         try {
             Stage stage = newStage();
-            ViewLoader.showStage(getSeason().getCurrentTeams(), "/view/CurrentRoundTeams.fxml", "Current Teams", stage);
+            ViewLoader.showStage(getSeason().getCurrentTeams(), "/view/CurrentRoundTeams.fxml", "Tournament", stage);
         } catch (IOException ex) {
             Logger.getLogger(SeasonController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @FXML
-    public void seeGame() {
-        try {
-            Stage stage = newStage();
-            ViewLoader.showStage(null, "/view/PlayersView.fxml", "Game Details", stage); // Modify as needed to fit actual data usage
-        } catch (IOException ex) {
-            Logger.getLogger(SeasonController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void startGame() {
+        // TODO: implement this method to start the game.
     }
 
     @FXML
     public void seeResults() {
         try {
             Stage stage = newStage();
-            ViewLoader.showStage(getSeason().record(), "/view/RecordView.fxml", "Game Results", stage);
+            ViewLoader.showStage(getSeason().record(), "/view/RecordView.fxml", "Season Record", stage);
         } catch (IOException ex) {
             Logger.getLogger(SeasonController.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -33,7 +33,7 @@
         <VBox alignment="CENTER" spacing='30'>
             <Button text="Round" styleClass="menu-button" onAction="#seeRound"/>
             <Button text="Current" styleClass="menu-button" onAction="#seeCurrent"/>
-            <Button text="Game" styleClass="menu-button" onAction="#seeGame"/>
+            <Button text="Game" styleClass="menu-button" onAction="#startGame"/>
             <Button text="Result" styleClass="menu-button" onAction="#seeResults"/>
             <Button text="Close" styleClass="menu-button" onAction="#close"/>
         </VBox>

@@ -36,7 +36,7 @@ public class ExploreTeamsController extends Controller<Teams> {
     public void seeTeamsMenu() {
         try {
             Stage stage = newStage();
-            ViewLoader.showStage(getTeams().currentTeams(), "/view/ManageTeamView.fxml", "Teams Menu", stage);
+            ViewLoader.showStage(getTeams().currentTeams(), "/view/TeamsTable.fxml", "Teams Menu", stage);
         } catch (IOException ex) {
             Logger.getLogger(SeasonController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -46,7 +46,7 @@ public class ExploreTeamsController extends Controller<Teams> {
     public void seePlayers() {
         try {
             Stage stage = newStage();
-            ViewLoader.showStage(getTeams().allPlayersList(), "/view/PlayersView.fxml", "View Players", stage);
+            ViewLoader.showStage(getTeams().allPlayersList(), "/view/PlayersView.fxml", "Players", stage);
         } catch (IOException ex) {
             Logger.getLogger(SeasonController.class.getName()).log(Level.SEVERE, null, ex);
         }
