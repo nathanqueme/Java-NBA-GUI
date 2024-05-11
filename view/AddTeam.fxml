@@ -6,21 +6,34 @@
 <?import javafx.scene.*?>	
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.image.*?> 
 <?import javafx.geometry.*?>
 
-<VBox  alignment="CENTER" styleClass="background" prefHeight="400.0" prefWidth="600.0" spacing="20" 
-       xmlns:fx="http://javafx.com/fxml/1" >
+<VBox alignment="CENTER" styleClass="background" prefHeight="400.0" prefWidth="600.0" spacing="20"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddTeamController">
     <padding>
-        <Insets top="10" bottom="10" left="5" right="5" />
+        <Insets top="10" bottom="10" left="5" right="5"/>
     </padding>
-   
-   
+
+     <VBox spacing="10" alignment="CENTER" style="-fx-padding: 0; -fx-alignment: top-center; -fx-max-width: 330px;">
+        <VBox alignment="TOP_LEFT">
+            <Label text="Team Details" styleClass="label-h2"/>
+       </VBox>
+        <HBox spacing="70" alignment="TOP_LEFT">
+            <Label text="Name:" styleClass="label"/>
+            <TextField fx:id="nameTf" styleClass="text-field"/>
+        </HBox>
+        <Region prefHeight="20" />
+        <Button text="Add" onAction="#addTeam" styleClass="button"/>
+    </VBox>
+
     <stylesheets>
         <URL value="@style.css"/>
     </stylesheets>
 </VBox>
+
 
     
 

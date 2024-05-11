@@ -38,7 +38,7 @@ public class TeamsController extends Controller<Teams> {
     public void handleAddTeam() {
         try {
             Stage stage = newStage("edit.png");
-            ViewLoader.showStage(null, "/view/AddTeam.fxml", "Adding New Team", stage);
+            ViewLoader.showStage(getTeams(), "/view/AddTeam.fxml", "Adding New Team", stage);
         } catch (IOException ex) {
             Logger.getLogger(SeasonController.class.getName()).log(Level.SEVERE, null, ex);
         }
