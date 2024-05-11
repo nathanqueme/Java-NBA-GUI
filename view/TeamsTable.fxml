@@ -25,13 +25,43 @@
         <URL value="@style.css"/>
     </stylesheets>
     
+
+    <Label styleClass="label-header" text="All Teams"/>
+    <TableView fx:id="groupsTv">
+        <columns>
+            <TableColumn text="Team Name" fx:id="teamNameColumn">
+                <cellValueFactory>
+                    <PropertyValueFactory property="name"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Number of Players" fx:id="numPlayersColumn">
+                <cellValueFactory>
+                    <PropertyValueFactory property="countPlayer"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Average Player Credit" fx:id="avgCreditColumn">
+                <cellValueFactory>
+                    <PropertyValueFactory property="countAvgCredit"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Average Age" fx:id="avgAgeColumn">
+                <cellValueFactory>
+                    <PropertyValueFactory property="countAvgAge"/>
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+    </TableView>
   
     
+    <Region prefHeight="10" />
     <HBox alignment="CENTER" spacing="10">
+        <Region prefHeight="10" />
         <Button text="Add" onAction="#handleAddTeam"/>
         <Button text="Manage" onAction="#handleManageTeam"/>
         <Button text="Delete" onAction="#handleDeleteTeam"/>
         <Button text="Close" onAction="#close"/>
+        <Region prefHeight="10" />
     </HBox>
+    <Region prefHeight="10" />
 </VBox>
 

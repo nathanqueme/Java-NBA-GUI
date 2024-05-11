@@ -10,9 +10,12 @@ import javafx.fxml.FXML;
 import javafx.stage.*;
 import javafx.scene.image.Image;
 import javafx.scene.control.*;
+import model.Team;
 import model.Teams;
 
 public class TeamsController extends Controller<Teams> {
+
+    @FXML private TableView<Team> groupsTv;
 
     @FXML private Button addTeamButton;
     @FXML private Button manageButton;
@@ -22,6 +25,24 @@ public class TeamsController extends Controller<Teams> {
 
     public Teams getTeams(){
         return model;
+    }
+
+    @FXML
+    private TableColumn<?, ?> teamNameColumn;
+    @FXML
+    private TableColumn<?, ?> numPlayersColumn;
+    @FXML
+    private TableColumn<?, ?> avgCreditColumn;
+    @FXML
+    private TableColumn<?, ?> avgAgeColumn;
+
+
+    @FXML private void initialize() {
+        teamNameColumn.prefWidthProperty().bind(groupsTv.widthProperty().multiply(0.25));
+        numPlayersColumn.prefWidthProperty().bind(groupsTv.widthProperty().multiply(0.25));
+        avgCreditColumn.prefWidthProperty().bind(groupsTv.widthProperty().multiply(0.25));
+        avgAgeColumn.prefWidthProperty().bind(groupsTv.widthProperty().multiply(0.25));
+        groupsTv.setItems(model.teams);
     }
 
     // UTILITY METHOD   --------------------------------------
