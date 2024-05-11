@@ -15,33 +15,44 @@ import model.Teams;
 
 public class TeamsController extends Controller<Teams> {
 
+    // --------------------------------------------- //
     @FXML private TableView<Team> groupsTv;
-
+    @FXML private TableColumn<?, ?> teamNameColumn;
+    @FXML private TableColumn<?, ?> numPlayersColumn;
+    @FXML private TableColumn<?, ?> avgCreditColumn;
+    @FXML private TableColumn<?, ?> avgAgeColumn;
+    // |                                           | //
     @FXML private Button addTeamButton;
     @FXML private Button manageButton;
     @FXML private Button deleButton;
     @FXML private Button closeButton;
+    // --------------------------------------------- //
 
 
     public Teams getTeams(){
         return model;
     }
-
-    @FXML
-    private TableColumn<?, ?> teamNameColumn;
-    @FXML
-    private TableColumn<?, ?> numPlayersColumn;
-    @FXML
-    private TableColumn<?, ?> avgCreditColumn;
-    @FXML
-    private TableColumn<?, ?> avgAgeColumn;
+    private Team getTeam() { 
+        return groupsTv.getSelectionModel().getSelectedItem();
+    }
 
 
     @FXML private void initialize() {
-        teamNameColumn.prefWidthProperty().bind(groupsTv.widthProperty().multiply(0.25));
-        numPlayersColumn.prefWidthProperty().bind(groupsTv.widthProperty().multiply(0.25));
-        avgCreditColumn.prefWidthProperty().bind(groupsTv.widthProperty().multiply(0.25));
-        avgAgeColumn.prefWidthProperty().bind(groupsTv.widthProperty().multiply(0.25));
+        // UI: 1/4 width for each col.
+        Double w = 0.245;
+        teamNameColumn.prefWidthProperty().bind(groupsTv.widthProperty().multiply(w));
+        numPlayersColumn.prefWidthProperty().bind(groupsTv.widthProperty().multiply(w));
+        avgCreditColumn.prefWidthProperty().bind(groupsTv.widthProperty().multiply(w));
+        avgAgeColumn.prefWidthProperty().bind(groupsTv.widthProperty().multiply(w));
+        // Disable btns if no team selected
+        manageButton.setDisable(true);
+        deleButton.setDisable(true);
+        groupsTv.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            boolean isTeamSelected = newSelection != null;
+            manageButton.setDisable(!isTeamSelected);
+            deleButton.setDisable(!isTeamSelected);
+        });
+        // Init
         groupsTv.setItems(model.teams);
     }
 
@@ -70,8 +81,8 @@ public class TeamsController extends Controller<Teams> {
         try {
             Stage stage = newStage("edit.png");
             // TODO pass name of the team to the controller
-            String teamName = "Nets";
-            ViewLoader.showStage(null, "/view/ManageTeamView.fxml", "Managing Team: "+teamName, stage);
+            String teamName = getTeam().getName();
+            ViewLoader.showStage(getTeam(), "/view/ManageTeamView.fxml", "Managing Team: "+teamName, stage);
         } catch (IOException ex) {
             Logger.getLogger(SeasonController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -79,7 +90,7 @@ public class TeamsController extends Controller<Teams> {
 
     @FXML
     public void handleDeleteTeam() {
-        // TODO: implement this method to delete the team.
+        getTeams().remove(getTeam());
     }
 
     @FXML

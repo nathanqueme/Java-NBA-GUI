@@ -56,10 +56,10 @@
     <Region prefHeight="10" />
     <HBox alignment="CENTER" spacing="10">
         <Region prefHeight="10" />
-        <Button text="Add" onAction="#handleAddTeam"/>
-        <Button text="Manage" onAction="#handleManageTeam"/>
-        <Button text="Delete" onAction="#handleDeleteTeam"/>
-        <Button text="Close" onAction="#close"/>
+        <Button text="Add" fx:id="addTeamButton" onAction="#handleAddTeam"/>
+        <Button text="Manage" fx:id="manageButton" onAction="#handleManageTeam"/>
+        <Button text="Delete" fx:id="deleButton" onAction="#handleDeleteTeam"/>
+        <Button text="Close" fx:id="closeButton" onAction="#close"/>
         <Region prefHeight="10" />
     </HBox>
     <Region prefHeight="10" />
