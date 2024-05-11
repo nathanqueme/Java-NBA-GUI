@@ -11,7 +11,12 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" xmlns:fx="http://javafx.com/fxml/1"  styleClass="background">
+<VBox 
+    alignment="CENTER" 
+    xmlns:fx="http://javafx.com/fxml/1" 
+    styleClass="background"
+    fx:controller="controller.ExploreTeamsController"
+>
    
     
     <stylesheets>
@@ -24,11 +29,11 @@
     <VBox alignment="CENTER">
         <Region prefHeight="20" />
         <HBox alignment="CENTER" spacing="220">
-            <Button text="Teams Menu" styleClass="menu-button"/>
-            <Button text="View Players" styleClass="menu-button"/>
+            <Button text="Teams Menu" styleClass="menu-button"  onAction="#seeTeamsMenu"/>
+            <Button text="View Players" styleClass="menu-button" onAction="#seePlayers"/>
         </HBox>
         <Region prefHeight="30" />
-        <Button text="Close" styleClass="menu-button"/>
+        <Button text="Close" styleClass="menu-button" onAction="#close"/>
         <Region prefHeight="10" />
     </VBox>
 
