@@ -17,12 +17,6 @@ public class NBAfxApp extends Application {
         String title = "NBAfx View";
         String fxml = "/view/AssociationView.fxml";
 
-        title = "Explore Teams";
-        fxml = "/view/TeamsTable.fxml";
-
-        title = "Arrange a new season";
-        fxml = "/view/SeasonRoundView.fxml";
-
         ViewLoader.showStage(
             new Association(), 
             fxml, 
