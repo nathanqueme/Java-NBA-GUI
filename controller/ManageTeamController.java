@@ -33,7 +33,6 @@ public class ManageTeamController extends Controller<List<Object>> {
 
     public Team getTeam(){
         Team team = (Team) model.get(1);
-        System.out.println(team);
         return team;
     }
     public Teams getTeams(){
