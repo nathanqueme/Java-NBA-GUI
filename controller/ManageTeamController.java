@@ -3,17 +3,18 @@ package controller;
 import au.edu.uts.ap.javafx.ViewLoader;
 import au.edu.uts.ap.javafx.Controller;
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.stage.*;
 import javafx.scene.image.Image;
-import javafx.scene.text.Text;
 import javafx.scene.control.*;
 import model.Team;
+import model.Teams;
 import model.Player;
 
-public class ManageTeamController extends Controller<Team> {
+public class ManageTeamController extends Controller<List<Object>> {
 
     // --------------------------------------------- //
     @FXML private TextField nameTf;
@@ -31,14 +32,19 @@ public class ManageTeamController extends Controller<Team> {
 
 
     public Team getTeam(){
-        return model;
+        Team team = (Team) model.get(1);
+        System.out.println(team);
+        return team;
+    }
+    public Teams getTeams(){
+        return (Teams) model.get(0);
     }
 
     private Player getPlayer() { 
         return groupsTv.getSelectionModel().getSelectedItem();
     }
 
-
+ 
     private String getName() { return nameTf.getText(); }
 	private void setName(String name) { nameTf.setText(name); }
 
@@ -63,8 +69,8 @@ public class ManageTeamController extends Controller<Team> {
         });
 
         // ADD DATA
-        groupsTv.setItems(model.getCurrentPlayers());
-        nameTf.setText(model.getName());
+        groupsTv.setItems(getTeam().getCurrentPlayers());
+        nameTf.setText(getTeam().getName());
 
         final Player[] lastClicked = {null};
         // 2nd click DESELECTION
@@ -138,11 +144,9 @@ public class ManageTeamController extends Controller<Team> {
         if (v.errors().size() > 0) {
             errorMsg = v.errors().toArray(new String[0])[v.errors().size() - 1];
         }
-        
-        // FIXME
-        //if (getTeams().hasTeam(getName())) {
-        //    errorMsg = getName() + " Team already exists";
-        //}
+        if (getTeams().hasTeam(getName()) && !getName().equals(getTeam().getName())) {
+            errorMsg = getName() + " Team already exists";
+        }
         if (!errorMsg.isEmpty()) {
             try {
                 Stage stage = newStage("error.png");
@@ -161,8 +165,8 @@ public class ManageTeamController extends Controller<Team> {
         if (!newNameIsValid(newName)) {
             return;
         }
-        if (newName != null && !newName.equals(model.getName())) {
-            model.setName(newName);
+        if (newName != null && !newName.equals(getTeam().getName())) {
+            getTeam().setName(newName);
         }
         stage.close();
     }

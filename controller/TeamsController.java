@@ -3,6 +3,8 @@ package controller;
 import au.edu.uts.ap.javafx.ViewLoader;
 import au.edu.uts.ap.javafx.Controller;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
@@ -112,8 +114,13 @@ public class TeamsController extends Controller<Teams> {
     public void handleManageTeam() {
         try {
             Stage stage = newStage("edit.png");
-            String teamName = getTeam().getName();
-            ViewLoader.showStage(getTeam(), "/view/ManageTeamView.fxml", "Managing Team: "+teamName, stage);
+            String title = "Managing Team: "+getTeam().getName(); 
+            // I want to pass both the teams and the team to the ManageTeamController
+
+            List<Object> data = new ArrayList<>();
+            data.add(getTeams());
+            data.add(getTeam());
+            ViewLoader.showStage(data, "/view/ManageTeamView.fxml", title, stage);
         } catch (IOException ex) {
             Logger.getLogger(SeasonController.class.getName()).log(Level.SEVERE, null, ex);
         }
