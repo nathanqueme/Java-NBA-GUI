@@ -23,7 +23,7 @@
 
     <VBox spacing="10" alignment="CENTER" style="-fx-padding: 0; -fx-alignment: top-center; -fx-max-width: 330px;">
         <VBox alignment="TOP_LEFT">
-            <Label text="Team Details" styleClass="label-h2"/>
+            <Label text="Player Details" styleClass="label-h2"/>
        </VBox>
         <HBox spacing="10" alignment="TOP_LEFT">
             <Label text="Player Name:" styleClass="label"/>
@@ -45,11 +45,11 @@
     </VBox>
 
     <HBox spacing="10" alignment="CENTER">
-        <Button text="Update" onAction="#updatePlayer" styleClass="button"/>
-        <Button text="Add" onAction="#addPlayer" styleClass="button"/>
-        <Button text="Close" onAction="#close" styleClass="button"/>
+        <Button text="Update" onAction="#updatePlayer" fx:id="updateButton" styleClass="button"/>
+        <Button text="Add" onAction="#addPlayer" fx:id="addButton" styleClass="button"/>
+        <Button text="Close" onAction="#close" fx:id="closeButton" styleClass="button"/>
     </HBox>
-    
+
     <stylesheets>
         <URL value="@style.css"/>
     </stylesheets>

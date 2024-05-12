@@ -130,9 +130,37 @@ public class ManageTeamController extends Controller<Team> {
         getTeam().getPlayers().removePlayer(getPlayer());
     }
 
+    public Boolean newNameIsValid(String newName) {
+        String errorMsg = "";
+        Validator v = new Validator();
+        v.clear();
+        v.generateErrors(newName);
+        if (v.errors().size() > 0) {
+            errorMsg = v.errors().toArray(new String[0])[v.errors().size() - 1];
+        }
+        
+        // FIXME
+        //if (getTeams().hasTeam(getName())) {
+        //    errorMsg = getName() + " Team already exists";
+        //}
+        if (!errorMsg.isEmpty()) {
+            try {
+                Stage stage = newStage("error.png");
+                ViewLoader.showStage(errorMsg, "/view/error.fxml", "Error!", stage);
+            } catch (IOException ex) {
+                Logger.getLogger(SeasonController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return false;
+        }
+        return true;
+    }
+
     @FXML
     public void saveAndClose() {
         String newName = nameTf.getText();
+        if (!newNameIsValid(newName)) {
+            return;
+        }
         if (newName != null && !newName.equals(model.getName())) {
             model.setName(newName);
         }

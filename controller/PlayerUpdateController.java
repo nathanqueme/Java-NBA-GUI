@@ -8,16 +8,19 @@ import model.Player;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import au.edu.uts.ap.javafx.*;
 
 
 public class PlayerUpdateController extends Controller<Player> {
 
-	@FXML private TextField nameTf;
+    @FXML private TextField nameTf;
     @FXML private TextField creditTf;
     @FXML private TextField ageTf;
     @FXML private TextField noTf;
+    
+    @FXML private Button addButton;
+    @FXML private Button updateButton;
+    @FXML private Button closeButton;
 
     public final Player getPlayer() { return model; }
 	private String getName() { return nameTf.getText(); }
@@ -36,50 +39,70 @@ public class PlayerUpdateController extends Controller<Player> {
     // -------------------------------------------------------
 
     @FXML public void initialize() {
-        nameTf.setText(model.getName());
-        creditTf.setText(Double.toString(model.getCredit()));
-        ageTf.setText(Integer.toString(model.getAge()));
-        noTf.setText(Integer.toString(model.getNo()));
+        Boolean isPlayerSelected = model != null;
+        updateButton.setDisable(!isPlayerSelected);
+        addButton.setDisable(isPlayerSelected);
+        if (isPlayerSelected) {
+            nameTf.setText(getPlayer().getName());
+            creditTf.setText(Double.toString(getPlayer().getCredit()));
+            ageTf.setText(Integer.toString(getPlayer().getAge()));
+            noTf.setText(Integer.toString(getPlayer().getNo()));
+        } else {
+            nameTf.setText("");
+            creditTf.setText("-1.0");
+            ageTf.setText("-1");
+            noTf.setText("-1");
+        }
     }
 
-	@FXML private void addTeam() {
-        String errorMsg = "";
+    private String validatePlayer(Player player) {
         Validator v = new Validator();
         v.clear();
-        v.generateErrors(getName());
-        //if (v.errors().size() > 0) {
-        //    errorMsg = v.errors().toArray(new String[0])[v.errors().size() - 1];
-        //}
-        //if (getTeams().hasTeam(getName())) {
-        //    errorMsg = getName() + " Team already exists";
-        //}
-        if (!errorMsg.isEmpty()) {
-            try {
-                Stage stage = newStage("error.png");
-                ViewLoader.showStage(errorMsg, "/view/error.fxml", "Error!", stage);
-            } catch (IOException ex) {
-                Logger.getLogger(PlayerUpdateController.class.getName()).log(Level.SEVERE, null, ex);
+        v.generateErrors(getName(), Double.toString(getCredit()), Integer.toString(getAge()), Integer.toString(getNo()));
+        String errorMsg = "";
+        if (v.errors().size() > 0) {
+            for (String error : v.errors()) {
+                errorMsg += error + "\n";
             }
-            return;
         }
+        return errorMsg;
+    }
 
-        model.setName(getName());
-        model.setCredit(getCredit());
-        model.setAge(getAge());
-        model.setNo(getNo());
-
-		stage.close();
-	}
-    
-    @FXML private void updatePlayer() {
-        model.setName(getName());
-        model.setCredit(getCredit());
-        model.setAge(getAge());
-        model.setNo(getNo());
-        stage.close();
+    private void openErrorStage(String errorMsg, String title) {
+        try {
+            Stage stage = newStage("error.png");
+            ViewLoader.showStage(errorMsg, "/view/error.fxml", title, stage);
+        } catch (IOException ex) {
+            Logger.getLogger(SeasonController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML private void addPlayer() {
+        Player newPlayer = new Player(getName(), getCredit(), getAge(), getNo());
+        String errorMsg = validatePlayer(newPlayer);
+   
+        if (!errorMsg.isEmpty()) {
+            openErrorStage(errorMsg, "Input Errors!");
+            return;
+        }
+        
+        // FIXME
+        model = newPlayer;
+        stage.close();
+    }
+
+    @FXML private void updatePlayer() {
+        Player newPlayer = new Player(getName(), getCredit(), getAge(), getNo());
+        String errorMsg = validatePlayer(newPlayer);
+   
+        if (!errorMsg.isEmpty()) {
+            openErrorStage(errorMsg, "Input Errors!");
+            return;
+        }
+        
+        getPlayer().update(getName(), getCredit(), getAge(), getNo());
+        // FIXME
+        stage.close();
     }
 
     @FXML private void close() {
