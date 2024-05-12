@@ -44,12 +44,20 @@ public class TeamsController extends Controller<Teams> {
         numPlayersColumn.prefWidthProperty().bind(groupsTv.widthProperty().multiply(w));
         avgCreditColumn.prefWidthProperty().bind(groupsTv.widthProperty().multiply(w));
         avgAgeColumn.prefWidthProperty().bind(groupsTv.widthProperty().multiply(w));
-        // Disable btns if no team selected
+        
+        // INIT BTNS DISABLED STATE
         addTeamButton.setDisable(false);
         manageButton.setDisable(true);
         deleButton.setDisable(true);
+        // UPDATED DISABLED STATE
+        groupsTv.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            boolean isTeamSelected = newSelection != null;
+            manageButton.setDisable(!isTeamSelected);
+            deleButton.setDisable(!isTeamSelected);
+            addTeamButton.setDisable(isTeamSelected);
+        });
 
-        // Init
+        // ADD ROWS
         groupsTv.setItems(model.teams);
 
         final Team[] lastClicked = {null};
@@ -60,7 +68,7 @@ public class TeamsController extends Controller<Teams> {
                 if (!row.isEmpty()) {
                     if (event.getClickCount() == 1 && row.getItem().equals(lastClicked[0])) {
                         groupsTv.getSelectionModel().clearSelection();
-                        lastClicked[0] = null; // Reset last clicked after clearing selection
+                        lastClicked[0] = null;
                     } else {
                         lastClicked[0] = row.getItem();
                     }
@@ -68,13 +76,15 @@ public class TeamsController extends Controller<Teams> {
             });
             return row;
         });
-      
-        // DISBLE BTNS BASED ON SELECTION
-        groupsTv.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            boolean isTeamSelected = newSelection != null;
-            manageButton.setDisable(!isTeamSelected);
-            deleButton.setDisable(!isTeamSelected);
-            addTeamButton.setDisable(isTeamSelected);
+        
+        // UNSELECT WHEN manage or delete BTN CLICKED
+        manageButton.setOnMouseClicked(event -> {
+            groupsTv.getSelectionModel().clearSelection();
+            lastClicked[0] = null;
+        });
+        deleButton.setOnMouseClicked(event -> {
+            groupsTv.getSelectionModel().clearSelection();
+            lastClicked[0] = null;
         });
     }
 
