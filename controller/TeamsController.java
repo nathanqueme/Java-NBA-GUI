@@ -112,7 +112,6 @@ public class TeamsController extends Controller<Teams> {
     public void handleManageTeam() {
         try {
             Stage stage = newStage("edit.png");
-            // TODO pass name of the team to the controller
             String teamName = getTeam().getName();
             ViewLoader.showStage(getTeam(), "/view/ManageTeamView.fxml", "Managing Team: "+teamName, stage);
         } catch (IOException ex) {

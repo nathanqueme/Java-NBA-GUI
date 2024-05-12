@@ -20,7 +20,6 @@ public class AddTeamController extends Controller<Teams> {
 	@FXML private TextField nameTf;
 
 	private String getName() { return nameTf.getText(); }
-	private void setName(String name) { nameTf.setText(name); }
 
     // UTILITY METHOD   --------------------------------------
     public static Stage newStage(String imageName) {
