@@ -13,7 +13,7 @@
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>  
 
-<VBox 
+<VBox  
     styleClass="background"  
     alignment="CENTER" 
     prefHeight="400" 
@@ -26,7 +26,7 @@
         <URL value="@style.css"/>
     </stylesheets>
 
-    <Label styleClass="label-h2" text="Round: 1"/>
+    <Label styleClass="label-h2" fx:id="roundLabel"/>
 
     <HBox spacing="20" alignment="CENTER">
         <ListView fx:id="teamsList" prefHeight="200">

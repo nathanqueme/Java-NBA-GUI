@@ -1,6 +1,8 @@
 package controller;
 
 import javafx.beans.binding.Bindings;
+import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.collections.ListChangeListener;
 import javafx.fxml.*;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -10,6 +12,7 @@ import model.Players;
 import model.Team;
 import model.Game;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,6 +25,7 @@ public class TeamsRoundController extends Controller<Season> {
     @FXML private TableColumn<Game, String> gameColumn;
     @FXML private TableColumn<Game, String> teamOneColumn;
     @FXML private TableColumn<Game, String> teamTwoColumn;
+    @FXML private Label roundLabel;
     @FXML private Button addButton;
     @FXML private Button arrangeSeasonButton;
 
@@ -30,34 +34,40 @@ public class TeamsRoundController extends Controller<Season> {
     }
 
     @FXML public void initialize() {
+
         teamsList.setItems(getSeason().getCurrentTeams());
         groupsTv.setItems(getSeason().getCurrentSchedule());
+        roundLabel.textProperty().bind(Bindings.concat("Round: ", Integer.toString(getSeason().round() + 1)));
+
+        teamsList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        teamsList.getSelectionModel().getSelectedItems().addListener((ListChangeListener.Change<? extends Team> change) -> {
+            if (teamsList.getSelectionModel().getSelectedItems().size() > 2) {
+                int last = teamsList.getSelectionModel().getSelectedIndices().get(teamsList.getSelectionModel().getSelectedIndices().size() - 1);
+                teamsList.getSelectionModel().clearSelection(last);
+            }
+        });
 
         addButton.disableProperty().bind(Bindings.size(teamsList.getSelectionModel().getSelectedItems()).isNotEqualTo(2));
-        arrangeSeasonButton.disableProperty().bind(Bindings.size(groupsTv.getItems()).isEqualTo(0));
 
-        
+        List<TableColumn<Game, String>> teamColumns = Arrays.asList(teamOneColumn, teamTwoColumn);
+        for (int i = 0; i < teamColumns.size(); i++) {
+            final int teamIndex = i;  // Capture index for use in lambda
+            teamColumns.get(i).setCellValueFactory(cellData -> {
+                Game game = cellData.getValue();
+                if (game.getCurrentTeams().size() > teamIndex) {
+                    return new ReadOnlyStringWrapper(game.getCurrentTeams().get(teamIndex).getName());
+                } else {
+                    return new ReadOnlyStringWrapper("");
+                }
+            });
+        }
     }
 
     @FXML public void addTeams() {
-        //ObservableList<Team> selectedTeams = teamsList.getSelectionModel().getSelectedItems();
-        //if (selectedTeams.size() >= 2) {
-        //    getSeason().addTeams(FXCollections.observableArrayList(selectedTeams.subList(0, 2)));
-        //} else {
-        //    // Handle the case where not enough teams are selected
-        //    Alert alert = new Alert(Alert.AlertType.ERROR);
-        //    alert.setContentText("Please select at least two teams to add to the game.");
-        //    alert.show();
-        //}
+        getSeason().addTeams(teamsList.getSelectionModel().getSelectedItems());
     }
 
     @FXML public void arrangeSeason() {
-        String result = getSeason().playGame();
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setContentText(result);
-        alert.show();
-        if (result.contains("Champion")) {
-            stage.close();
-        }
+        stage.close();
     }
 }
