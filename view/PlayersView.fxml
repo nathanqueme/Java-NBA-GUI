@@ -62,6 +62,9 @@
                 </cellValueFactory>
             </TableColumn>
         </columns>
+        <placeholder>
+            <Label text="Players list is not loadedt" style="-fx-text-fill: gray;"/>
+        </placeholder>
     </TableView>
     
     <Label styleClass="label-header" text="Filter"/>
