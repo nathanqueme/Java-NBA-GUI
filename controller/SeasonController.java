@@ -56,7 +56,14 @@ public class SeasonController extends Controller<Season> {
 
     @FXML
     public void startGame() {
-        // TODO: implement this method to start the game.
+        Stage stage = newStage();
+        String message = getSeason().playGame();
+        String title = "All Games Played!";
+        try {
+            ViewLoader.showStage(message, "/view/error.fxml", title, stage);
+        } catch (IOException ex) {
+            Logger.getLogger(SeasonController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
