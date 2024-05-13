@@ -34,9 +34,39 @@ public class PlayerUpdateController extends Controller<List<Object>> {
         return player; 
     }
 	private String getName() { return nameTf.getText(); }
-    private Double getCredit() { return Double.parseDouble(creditTf.getText()); }
-    private int getAge() { return Integer.parseInt(ageTf.getText()); }
-    private int getNo() { return Integer.parseInt(noTf.getText()); }
+    private Double getCredit() { 
+        String creditText = creditTf.getText();
+        if (creditText.isEmpty()) {
+            return null;
+        }
+        try {
+            return Double.parseDouble(creditText);
+        } catch (NumberFormatException e) {
+           return null;
+        }
+    }
+    private int getAge() {
+        String ageText = ageTf.getText();
+        if (ageText.isEmpty()) {
+            return -1;
+        }
+        try {
+            return Integer.parseInt(ageText);
+        } catch (NumberFormatException e) {
+            return -1;
+        }
+    }
+    private int getNo() {
+        String noText = noTf.getText();
+        if (noText.isEmpty()) {
+            return -1;
+        }
+        try {
+            return Integer.parseInt(noText);
+        } catch (NumberFormatException e) {
+            return -1;
+        }
+    }
 
     // UTILITY METHOD   --------------------------------------
     public static Stage newStage(String imageName) {
@@ -62,14 +92,39 @@ public class PlayerUpdateController extends Controller<List<Object>> {
     private String validatePlayer(Player player) {
         Validator v = new Validator();
         v.clear();
-        v.generateErrors(getName(), Double.toString(getCredit()), Integer.toString(getAge()), Integer.toString(getNo()));
+    
+        String creditStr = (getCredit() == null) ? "" : Double.toString(getCredit());
+        v.generateErrors(getName(), creditStr, Integer.toString(getAge()), Integer.toString(getNo()));
+    
         String errorMsg = "";
         if (v.errors().size() > 0) {
             for (String error : v.errors()) {
-                errorMsg += error + "\n";
+                errorMsg += error;
             }
         }
         return errorMsg;
+    }
+
+    public Player getNewPlayer() {
+        String name = "";
+        Double credit = -1.0;
+        int age = -1;
+        int no = -1;
+
+        // Default INVALID vals
+        if (nameTf.getText() != null) {
+            name = getName();
+        }
+        if (creditTf.getText().isEmpty() == false) {
+            credit = getCredit();
+        }
+        if (ageTf.getText().isEmpty() == false) {
+            age = getAge();
+        }
+        if (noTf.getText().isEmpty() == false) {
+            no = getNo();
+        }
+        return new Player(name, credit, age, no);
     }
 
     public Boolean playerIsUnique(Player newPlayer) {
@@ -105,7 +160,7 @@ public class PlayerUpdateController extends Controller<List<Object>> {
     }
 
     @FXML private void addPlayer() {
-        Player newPlayer = new Player(getName(), getCredit(), getAge(), getNo());
+        Player newPlayer = getNewPlayer();
         String errorMsg = validatePlayer(newPlayer);
         if (!errorMsg.isEmpty()) {
             openErrorStage(errorMsg, "Input Errors!");
@@ -119,7 +174,7 @@ public class PlayerUpdateController extends Controller<List<Object>> {
     }
 
     @FXML private void updatePlayer() {
-        Player newPlayer = new Player(getName(), getCredit(), getAge(), getNo());
+        Player newPlayer = getNewPlayer();
         String errorMsg = validatePlayer(newPlayer);
         if (!errorMsg.isEmpty()) {
             openErrorStage(errorMsg, "Input Errors!");

@@ -33,22 +33,22 @@
     <HBox alignment="CENTER" spacing="10">
         <TableView fx:id="groupsTv">
             <columns>
-                <TableColumn text="Round" fx:id="roundColumn" prefWidth="110.0">
+                <TableColumn text="Round" fx:id="roundColumn" prefWidth="120.0">
                     <cellValueFactory>
                         <PropertyValueFactory property="round"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="Game" fx:id="gameColumn" prefWidth="110.0">
+                <TableColumn text="Game" fx:id="gameColumn" prefWidth="120.0">
                     <cellValueFactory>
                         <PropertyValueFactory property="gameNumber"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="Winning Team" fx:id="winColumn" prefWidth="110.0">
+                <TableColumn text="Winning Team" fx:id="winColumn" prefWidth="120.0">
                     <cellValueFactory>
                         <PropertyValueFactory property="winTeam"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="Losing Team" fx:id="loserColumn" prefWidth="110.0">
+                <TableColumn text="Losing Team" fx:id="loserColumn" prefWidth="120.0">
                     <cellValueFactory>
                         <PropertyValueFactory property="loseTeam"/>
                     </cellValueFactory>

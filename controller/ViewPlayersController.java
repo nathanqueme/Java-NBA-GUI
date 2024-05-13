@@ -43,6 +43,9 @@ public class ViewPlayersController extends Controller<Teams> {
     
         filteredPlayers = new FilteredList<>(getTeams().allPlayersList(), p -> true);
         groupsTv.setItems(filteredPlayers);
+
+        fromTf.setText("0");
+        toTf.setText("0");
     
         levelTf.textProperty().addListener((observable, oldValue, newValue) -> filterPlayers());
         nameTf.textProperty().addListener((observable, oldValue, newValue) -> filterPlayers());
@@ -58,12 +61,12 @@ public class ViewPlayersController extends Controller<Teams> {
             String toFilter = toTf.getText();
 
             boolean matchesLevel = levelFilter.isEmpty() || player.getLevel().toLowerCase().startsWith(levelFilter);
-            boolean matchesName = nameFilter.isEmpty() || player.getName().toLowerCase().startsWith(nameFilter);
+            boolean matchesName = nameFilter.isEmpty() || player.getName().toLowerCase().contains(nameFilter);
 
             boolean matchesAge = true;
             try {
-                int ageFrom = fromFilter.isEmpty() ? 0 : Integer.parseInt(fromFilter);
-                int ageTo = toFilter.isEmpty() ? Integer.MAX_VALUE : Integer.parseInt(toFilter);
+                int ageFrom = fromFilter.isEmpty() || fromFilter.equals("0") ? 0 : Integer.parseInt(fromFilter);
+                int ageTo = toFilter.isEmpty() || toFilter.equals("0") ? Integer.MAX_VALUE : Integer.parseInt(toFilter);
                 matchesAge = (player.getAge() >= ageFrom && player.getAge() <= ageTo);
             } catch (NumberFormatException e) {
                 // handle case where from or to fields are not valid integers

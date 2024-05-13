@@ -67,11 +67,9 @@
         </placeholder>
     </TableView>
     
-    <Label styleClass="label-header" text="Filter"/>
-    
-    <Region prefHeight="10" />
+    <Label styleClass="label-h2" text="Filter"/>
+
     <VBox alignment="CENTER" spacing="10">
-        <Region prefHeight="10" />
             <HBox alignment="CENTER" spacing="10">
                 <Label text="Filter By Level:" styleClass="label"/>
                 <TextField fx:id="levelTf" styleClass="text-field"/>
@@ -79,13 +77,16 @@
                 <Label text="Filter By Name:" styleClass="label"/>
                 <TextField fx:id="nameTf" styleClass="text-field"/>
             </HBox>
-            <HBox alignment="CENTER" spacing="10">
-                <Label text="From:" styleClass="label"/>
-                <TextField fx:id="fromTf" styleClass="text-field"/>
-            
-                <Label text="To:" styleClass="label"/>
-                <TextField fx:id="toTf" styleClass="text-field"/>
-            </HBox>
+            <VBox alignment="CENTER" spacing="0">
+                <Label text="Filter By Age:" styleClass="label"/>
+                <HBox alignment="CENTER" spacing="10">
+                    <Label text="From:" styleClass="label"/>
+                    <TextField fx:id="fromTf" styleClass="text-field"/>
+
+                    <Label text="To:" styleClass="label"/>
+                    <TextField fx:id="toTf" styleClass="text-field"/>
+                </HBox>
+            </VBox>
         <Button text="Close" fx:id="closeButton" onAction="#close"/>
         <Region prefHeight="10" />
     </VBox>

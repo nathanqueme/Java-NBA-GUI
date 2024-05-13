@@ -37,10 +37,12 @@ public class AddTeamController extends Controller<Teams> {
         v.clear();
         v.generateErrors(getName());
         if (v.errors().size() > 0) {
-            errorMsg = v.errors().toArray(new String[0])[v.errors().size() - 1];
+            for (String error : v.errors()) {
+                errorMsg += error + "\n";
+            }
         }
         if (getTeams().hasTeam(getName())) {
-            errorMsg = getName() + " Team already exists";
+            errorMsg += getName() + " Team already exists\n";
         }
         if (!errorMsg.isEmpty()) {
             try {
