@@ -74,7 +74,7 @@
         <Region prefHeight="10" />
             <HBox alignment="CENTER" spacing="10">
                 <Label text="Filter By Level:" styleClass="label"/>
-                <TextField fx:id="leveTf" styleClass="text-field"/>
+                <TextField fx:id="levelTf" styleClass="text-field"/>
             
                 <Label text="Filter By Name:" styleClass="label"/>
                 <TextField fx:id="nameTf" styleClass="text-field"/>
