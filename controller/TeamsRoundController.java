@@ -48,6 +48,7 @@ public class TeamsRoundController extends Controller<Season> {
         });
 
         addButton.disableProperty().bind(Bindings.size(teamsList.getSelectionModel().getSelectedItems()).isNotEqualTo(2));
+        arrangeSeasonButton.disableProperty().bind(Bindings.size(getSeason().getCurrentTeams()).isNotEqualTo(0));
 
         List<TableColumn<Game, String>> teamColumns = Arrays.asList(teamOneColumn, teamTwoColumn);
         for (int i = 0; i < teamColumns.size(); i++) {

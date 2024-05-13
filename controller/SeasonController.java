@@ -48,7 +48,7 @@ public class SeasonController extends Controller<Season> {
     public void seeCurrent() {
         try {
             Stage stage = newStage();
-            ViewLoader.showStage(getSeason().getCurrentTeams(), "/view/CurrentRoundTeams.fxml", "Tournament", stage);
+            ViewLoader.showStage(getSeason(), "/view/CurrentRoundTeams.fxml", "Tournament", stage);
         } catch (IOException ex) {
             Logger.getLogger(SeasonController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -63,7 +63,7 @@ public class SeasonController extends Controller<Season> {
     public void seeResults() {
         try {
             Stage stage = newStage();
-            ViewLoader.showStage(getSeason().record(), "/view/RecordView.fxml", "Season Record", stage);
+            ViewLoader.showStage(getSeason(), "/view/RecordView.fxml", "Season Record", stage);
         } catch (IOException ex) {
             Logger.getLogger(SeasonController.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -56,7 +56,7 @@
                 </TableColumn>
             </columns>
             <placeholder>
-                <Label text="No Games scheduled"/>
+                <Label text="No teams added to the round"/>
             </placeholder>
         </TableView>
     </HBox>

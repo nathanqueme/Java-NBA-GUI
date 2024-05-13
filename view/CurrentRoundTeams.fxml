@@ -6,7 +6,6 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.control.Button?>
@@ -14,9 +13,45 @@
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>  
 
-<VBox styleClass="background"  alignment="CENTER" prefHeight="300" prefWidth="400" spacing="20" xmlns:fx="http://javafx.com/fxml/1" >
-   
+<VBox  
+    styleClass="background"  
+    alignment="CENTER" 
+    prefHeight="300" 
+    prefWidth="500" 
+    spacing="20" 
+    xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="controller.CurrentRoundTeamsController">
+
     <stylesheets>
         <URL value="@style.css"/>
     </stylesheets>
+
+    <Label styleClass="label-h2" fx:id="roundLabel"/>
+
+    <HBox alignment="CENTER" spacing="10">
+        <TableView fx:id="groupsTv">
+            <columns>
+                <TableColumn text="Team-1" fx:id="teamOneColumn" prefWidth="100.0">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="team1"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="" fx:id="separationColumn" prefWidth="100.0">
+                </TableColumn>
+                <TableColumn text="Team-2" fx:id="teamTwoColumn" prefWidth="100.0">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="team2"/>
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+            <placeholder>
+                <Label text="No teams to show"/>
+            </placeholder>
+        </TableView>
+    </HBox>
+
+    <Region prefHeight="40" />
+    <Button text="Close" fx:id="closeButton" onAction="#close" />
+    <Region prefHeight="10" />
+
 </VBox>
