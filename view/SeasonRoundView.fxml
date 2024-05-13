@@ -17,7 +17,7 @@
     styleClass="background"  
     alignment="CENTER" 
     prefHeight="400" 
-    prefWidth="800" 
+    prefWidth="850" 
     spacing="20" 
     xmlns:fx="http://javafx.com/fxml/1"
     fx:controller="controller.TeamsRoundController">
@@ -29,7 +29,7 @@
     <Label styleClass="label-h2" fx:id="roundLabel"/>
 
     <HBox spacing="20" alignment="CENTER">
-        <ListView fx:id="teamsList" prefHeight="200">
+        <ListView fx:id="teamsList" prefWidth="250"  prefHeight="200">
             <placeholder>
                 <Label text="All teams added to round."/>
             </placeholder>

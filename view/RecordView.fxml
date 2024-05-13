@@ -14,9 +14,54 @@
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>  
 
-<VBox styleClass="background"  alignment="CENTER" prefHeight="300" prefWidth="500" spacing="20" xmlns:fx="http://javafx.com/fxml/1" >
+<VBox 
+    styleClass="background"  
+    alignment="CENTER" 
+    prefHeight="300" 
+    prefWidth="500" 
+    spacing="20" 
+    xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="controller.RecordController"
+>
    
     <stylesheets>
         <URL value="@style.css"/>
     </stylesheets>
+
+    <Label styleClass="label-h2" text="Season Record"/>
+
+    <HBox alignment="CENTER" spacing="10">
+        <TableView fx:id="groupsTv">
+            <columns>
+                <TableColumn text="Round" fx:id="roundColumn" prefWidth="110.0">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="round"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Game" fx:id="gameColumn" prefWidth="110.0">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="gameNumber"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Winning Team" fx:id="winColumn" prefWidth="110.0">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="winTeam"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Losing Team" fx:id="loserColumn" prefWidth="110.0">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="loseTeam"/>
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+            <placeholder>
+                <Label text="No records to show"/>
+            </placeholder>
+        </TableView>
+    </HBox>
+
+    <Region prefHeight="40" />
+    <Button text="Close" fx:id="closeButton" onAction="#close" />
+    <Region prefHeight="10" />
+
 </VBox>
