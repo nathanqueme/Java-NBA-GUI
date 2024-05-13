@@ -3,6 +3,7 @@ package controller;
 import au.edu.uts.ap.javafx.ViewLoader;
 import au.edu.uts.ap.javafx.Controller;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -113,7 +114,11 @@ public class ManageTeamController extends Controller<List<Object>> {
     public void addPlayer() {
         try {
             Stage stage = newStage("edit.png");
-            ViewLoader.showStage(null, "/view/PlayerUpdateView.fxml", "Adding New Player", stage);
+            Player emptyPLayer = new Player("", -1.0, -1, -1);
+            List<Object> data = new ArrayList<>();
+            data.add(getTeam().getPlayers());
+            data.add(emptyPLayer);
+            ViewLoader.showStage(data, "/view/PlayerUpdateView.fxml", "Adding New Player", stage);
         } catch (IOException ex) {
             Logger.getLogger(SeasonController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -123,8 +128,11 @@ public class ManageTeamController extends Controller<List<Object>> {
     public void updatePlayer() {
         try {
             Stage stage = newStage("edit.png");
-            String playerName = getPlayer().getName();
-            ViewLoader.showStage(getPlayer(), "/view/PlayerUpdateView.fxml", "Updating Player: "+playerName, stage);
+            String title = "Updating Player: "+getPlayer().getName();
+            List<Object> data = new ArrayList<>();
+            data.add(getTeam().getPlayers());
+            data.add(getPlayer());
+            ViewLoader.showStage(data, "/view/PlayerUpdateView.fxml", title, stage);
         } catch (IOException ex) {
             Logger.getLogger(SeasonController.class.getName()).log(Level.SEVERE, null, ex);
         }
