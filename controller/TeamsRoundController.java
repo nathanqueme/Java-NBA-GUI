@@ -5,17 +5,11 @@ import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.*;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.stage.Stage;
 import model.Season;
-import model.Players;
 import model.Team;
 import model.Game;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import au.edu.uts.ap.javafx.*;
 
 public class TeamsRoundController extends Controller<Season> {

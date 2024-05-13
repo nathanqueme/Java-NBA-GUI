@@ -5,7 +5,6 @@ import au.edu.uts.ap.javafx.Controller;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.stage.*;
 import javafx.scene.image.Image;
