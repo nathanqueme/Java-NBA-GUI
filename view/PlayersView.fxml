@@ -14,11 +14,79 @@
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>  
 
-<VBox  xmlns:fx="http://javafx.com/fxml/1" styleClass="background" alignment="CENTER" >
-    
-
+<VBox 
+    alignment="CENTER" 
+    xmlns:fx="http://javafx.com/fxml/1"  
+    styleClass="background"
+    fx:controller="controller.ViewPlayersController"
+    prefWidth="800"
+>
+   
     <stylesheets>
         <URL value="@style.css"/>
     </stylesheets>
     
+
+    <Label styleClass="label-header" text="All Players"/>
+
+    <TableView fx:id="groupsTv">
+        <columns>
+            <TableColumn text="Team" fx:id="teamColumn">
+                <cellValueFactory>
+                    <PropertyValueFactory property="team"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Player Name" fx:id="nameColumn">
+                <cellValueFactory>
+                    <PropertyValueFactory property="name"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Player Credit" fx:id="creditColumn">
+                <cellValueFactory>
+                    <PropertyValueFactory property="credit"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Player Age" fx:id="ageColumn">
+                <cellValueFactory>
+                    <PropertyValueFactory property="age"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Player No" fx:id="noColumn">
+                <cellValueFactory>
+                    <PropertyValueFactory property="No"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Player Level" fx:id="levelColumn">
+                <cellValueFactory>
+                    <PropertyValueFactory property="level"/>
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+    </TableView>
+    
+    <Label styleClass="label-header" text="Filter"/>
+    
+    <Region prefHeight="10" />
+    <VBox alignment="CENTER" spacing="10">
+        <Region prefHeight="10" />
+            <HBox alignment="CENTER" spacing="10">
+                <Label text="Filter By Level:" styleClass="label"/>
+                <TextField fx:id="leveTf" styleClass="text-field"/>
+            
+                <Label text="Filter By Name:" styleClass="label"/>
+                <TextField fx:id="nameTf" styleClass="text-field"/>
+            </HBox>
+            <HBox alignment="CENTER" spacing="10">
+                <Label text="From:" styleClass="label"/>
+                <TextField fx:id="fromTf" styleClass="text-field"/>
+            
+                <Label text="To:" styleClass="label"/>
+                <TextField fx:id="toTf" styleClass="text-field"/>
+            </HBox>
+        <Button text="Close" fx:id="closeButton" onAction="#close"/>
+        <Region prefHeight="10" />
+    </VBox>
+    <Region prefHeight="10" />
+
 </VBox>
+

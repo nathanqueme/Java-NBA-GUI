@@ -46,7 +46,7 @@ public class ExploreTeamsController extends Controller<Teams> {
     public void seePlayers() {
         try {
             Stage stage = newStage();
-            ViewLoader.showStage(getTeams().allPlayersList(), "/view/PlayersView.fxml", "Players", stage);
+            ViewLoader.showStage(getTeams(), "/view/PlayersView.fxml", "Players", stage);
         } catch (IOException ex) {
             Logger.getLogger(SeasonController.class.getName()).log(Level.SEVERE, null, ex);
         }
