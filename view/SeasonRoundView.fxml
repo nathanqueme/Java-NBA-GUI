@@ -6,7 +6,6 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.control.Button?>
@@ -16,12 +15,54 @@
 
 <VBox 
     styleClass="background"  
-    alignment="CENTER" prefHeight="400" prefWidth="340" spacing="20" 
+    alignment="CENTER" 
+    prefHeight="400" 
+    prefWidth="800" 
+    spacing="20" 
     xmlns:fx="http://javafx.com/fxml/1"
->
-    
+    fx:controller="controller.TeamsRoundController">
+
     <stylesheets>
         <URL value="@style.css"/>
     </stylesheets>
+
+    <Label styleClass="label-h2" text="Round: 1"/>
+
+    <HBox spacing="20" alignment="CENTER">
+        <ListView fx:id="teamsList" prefHeight="200">
+            <placeholder>
+                <Label text="All teams added to round."/>
+            </placeholder>
+        </ListView>
+        
+        <Button text=">>>" fx:id="addButton" onAction="#addTeams" />
+        
+        <TableView fx:id="groupsTv">
+            <columns>
+                <TableColumn text="Game" fx:id="gameColumn">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="term"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Team-1" fx:id="teamOneColumn">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="team1"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Team-2" fx:id="teamTwoColumn">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="team2"/>
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+            <placeholder>
+                <Label text="No Games scheduled"/>
+            </placeholder>
+        </TableView>
+    </HBox>
+
+    <Button text="Arrange Season" fx:id="arrangeSeasonButton" onAction="#arrangeSeason" />
+
+    <Region prefHeight="10" />
 
 </VBox>

@@ -38,7 +38,7 @@ public class SeasonController extends Controller<Season> {
     public void seeRound() {
         try {
             Stage stage = newStage();
-            ViewLoader.showStage(getSeason().getCurrentSchedule(), "/view/SeasonRoundView.fxml", "Season Rounds", stage);
+            ViewLoader.showStage(getSeason(), "/view/SeasonRoundView.fxml", "Season Rounds", stage);
         } catch (IOException ex) {
             Logger.getLogger(SeasonController.class.getName()).log(Level.SEVERE, null, ex);
         }
